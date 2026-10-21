@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://djcpw25lnnq7"]
+
+[ext_resource type="PackedScene" uid="uid://bak8ltrhbmlv5" path="res://assets/CSGStairMaker3D.tscn" id="1_nnsk1"]
+[ext_resource type="PackedScene" uid="uid://df181aa2lt2jp" path="res://player/player.tscn" id="2_rwgxs"]
+[ext_resource type="Script" uid="uid://d3tfkcoffpoht" path="res://scripts/door.gd" id="3_4wyf3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rwgxs"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_4wyf3"]
+sky_material = SubResource("ProceduralSkyMaterial_rwgxs")
+
+[sub_resource type="Environment" id="Environment_k0juu"]
+background_mode = 2
+sky = SubResource("Sky_4wyf3")
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wbisr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8i57a"]
+size = Vector3(1.8101196, 2.6063232, 0.2265625)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wbisr"]
+size = Vector3(1.8094482, 2.6016846, 0.22387695)
+
+[sub_resource type="Animation" id="Animation_k0juu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_71j4m"]
+resource_name = "door_open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.6877334, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qfnet"]
+_data = {
+&"RESET": SubResource("Animation_k0juu"),
+&"door_open": SubResource("Animation_71j4m")
+}
+
+[node name="world" type="Node" unique_id=712828616]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=450918138]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1100391649]
+environment = SubResource("Environment_k0juu")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=2051080083]
+use_collision = true
+size = Vector3(20, 0.5, 20)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1539650753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6807184, 0.9178581, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D" unique_id=1109209216]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=745910778]
+shape = SubResource("BoxShape3D_wbisr")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="." unique_id=1686793496]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6807184, 0.9178581, -1.5984716)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D2" unique_id=953120242]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.3684945)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2" unique_id=622530348]
+shape = SubResource("BoxShape3D_wbisr")
+
+[node name="RigidBody3D3" type="RigidBody3D" parent="." unique_id=996681569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6807184, 1.9631298, -0.7044158)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D3" unique_id=142706983]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.118391514)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3" unique_id=1285481263]
+shape = SubResource("BoxShape3D_wbisr")
+
+[node name="CSGStairMaker3D" parent="." unique_id=629869147 instance=ExtResource("1_nnsk1")]
+transform = Transform3D(-0.04226586, 0, 0.9991064, 0, 1, 0, -0.9991064, 0, -0.04226586, -4.174004, 0.676219, -4.691806)
+use_collision = true
+size = Vector3(5, 5, 5)
+num_stairs = 12
+
+[node name="player" parent="." unique_id=1203404488 instance=ExtResource("2_rwgxs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.574204, 0)
+
+[node name="simple_door" type="StaticBody3D" parent="." unique_id=1434232814]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0767298, 0.8744745, -8.656222)
+script = ExtResource("3_4wyf3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="simple_door" unique_id=1142485954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.93795824, 0.8031616, -0.01953125)
+shape = SubResource("BoxShape3D_8i57a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="simple_door" unique_id=369438892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.93670654, 0.6753895, -0.022338867)
+mesh = SubResource("BoxMesh_wbisr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="simple_door" unique_id=2094891356]
+libraries/ = SubResource("AnimationLibrary_qfnet")
