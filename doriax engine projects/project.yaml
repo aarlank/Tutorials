@@ -1,0 +1,65 @@
+name: First_Person_Controller
+nextSceneId: 1
+selectedScene: 1
+canvasWidth: 1280
+canvasHeight: 720
+scalingMode: fitwidth
+textureStrategy: resize
+vsync: true
+windowMode: windowed
+windowWidth: 1280
+windowHeight: 720
+windowResizable: true
+luaDir: .
+startSceneId: 1
+terrainEditor:
+  brushMode: PaintBlue
+  brushShape: Circle
+  brushFalloff: Smooth
+  brushSize: 4
+  brushStrength: 1
+  flattenHeight: 0.5
+  heightMapResolution: 512
+  blendMapResolution: 512
+  normalizeBlendPaint: true
+  heightMapStartAtMiddle: true
+  flattenPickOnStroke: true
+tabs:
+  - type: scene
+    filepath: scenes/World.scene
+  - type: codeeditor
+    filepath: player/PlayerScript.lua
+  - type: codeeditor
+    filepath: player/CameraScript.lua
+  - type: codeeditor
+    filepath: player/Mouse_lockerScript.lua
+scenes:
+  - filepath: scenes/World.scene
+    showAllJoints: false
+    showAllBones: false
+    showAllBodies: false
+    hideCameraView: false
+    hideLightIcons: false
+    hideSoundIcons: false
+    hideContainerGuides: false
+    showOrigin: true
+    showGrid3D: true
+    hideSelectionOutline: false
+    disableFaceCulling: false
+    showGrid2D: false
+    gridSpacing2D: 50
+    gridSpacing3D: 1
+    snapToGrid: false
+    snapTile: false
+    snapRotation: false
+    rotationSnapDegrees: 15
+    editorCamera:
+      type: camera_perspective
+      target: [-1.212429, 4.580925, 0.6833286]
+      up: [0, 1, 0]
+      yfov: 0.75
+      aspect: 1.0977039
+      nearClip: 0.3
+      farClip: 4000
+      position: [-32.70741, 32.93949, -16.56075]
+      walkSpeed: 1
